@@ -37,3 +37,20 @@
 * True to first class function definition, functions returned from functions can be assigned the same as any return value or object
 * Can immediately call a returned function either by calling it from the assigned variable or adding another parenthesis onto the end of the original function call like function('a')('b');
 
+## IIFE: Immediately Invoked Function Expressions
+* Function expression that is only run once, aka not assigned to any variable or defined as a function
+* Format: (function () {} )();
+    * Useful for maintaining data privacy, as our function isn't accessible from within the an object or prototype
+
+## Closures
+* **Closure**: An inner function always has access to the variables/parameters of its outer function, even after the outer function has returned.
+    * Even after the execution context of a function is removed from the execution stack, it's variable object remains in the *scope chain*. This allows inner functions to access the returning function's properties even after returning.
+    * Built into Javascript: no need to define manually
+
+## Bind, Call, and Apply
+* **Bind**, **call**, and **apply** methods allow us to manually define the **this** variable within a function's execution context
+    * *call* accepts an object to define as *this*, and each value to be passed into the called function
+    * *apply* accepts an object to define as *this*, and an array of values
+        * will not work unless function accepts an array as an argument
+    * *bind* doesn't immediately call a function, instead generating a copy of a function so we can store it somewhere.
+        * Useful for a function with predefined arguments

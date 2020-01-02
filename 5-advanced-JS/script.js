@@ -174,3 +174,128 @@
     // generalQuestion('Tim');
 
     // interviewQuestion('designer')('Anthony');
+
+
+
+/////////////////////////////////
+// Lesson 67: Immediately Invoked Function Expressions
+/////////////////////////////////
+
+    // // Want to start a game, and hide the score.
+    // // Can define score variable inside a function, so we can't access it in an outer score.
+    // function game() {
+    //     var score = Math.random() * 10;
+    //     console.log(score >= 5);
+    // }
+    // game();
+
+    // // Or, we can define an IIFE. But this isn't the format we want
+    // (function() {
+    //     var score = Math.random() * 10;
+    //     console.log(score >= 5);
+    // })();
+
+    // //console.log(score); // can't access
+
+    // // Need to trick parser into thinking this is an expression, even if it isn't assigned to anything
+    // (function (goodLuck) {
+    //     var score = Math.random() * 10;
+    //     console.log(score >= 5 - goodLuck);
+    // })(5);
+
+    // // Mainly useful for data privacy
+
+
+
+/////////////////////////////////
+// Lesson 68: Closures
+/////////////////////////////////
+
+    // function retirement(retAge) {
+    //     var a = ' years left \'til retirement'
+    //     return function(yob) {
+    //         var age = 2019 - yob;
+    //         console.log((retAge - age) + a);
+    //     }
+    // }
+
+    // var USA = retirement(66);
+    // USA(1995);  // this, or
+    // retirement(66)(1995); // this.
+
+
+    // function interviewQuestion(job) {
+    //     return function(name) {    
+    //         if (job === 'designer') {
+    //                 console.log(name + ', can you please explain what UX design is?');
+    //         } else if (job === 'teacher') {
+    //                 console.log(name + ', what subject do you teach?');
+    //         } else {
+    //                 console.log(name + ', what do you do?');
+    //         }
+    //     }
+    // };
+
+    // interviewQuestion('designer')('Tim');
+    // interviewQuestion('teacher')('Dang');
+    // interviewQuestion('farmer')('Scoob');
+
+
+
+/////////////////////////////////
+// Lesson 69: Bind, Call, Apply
+/////////////////////////////////
+
+    // var john = {
+    //     name: 'john',
+    //     age: 26,
+    //     job: 'teacher',
+    //     presentation: function(style, timeOfDay) {
+    //         if (style === 'formal') {
+    //             console.log('Good ' + timeOfDay + 
+    //                         ', ladies and gentlemen! I\'m ' + this.name + 
+    //                         ' and I\'m ' + this.age + ' years old.');
+    //         }
+    //         else if (style === 'friendly') {
+    //             console.log('Hey, what\'s up! I\'m ' + this.name + 
+    //             ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+    //         }
+    //     }
+    // };
+
+    // john.presentation('formal','morning');
+
+    // var emily = {
+    //     name: 'Emily',
+    //     age: 35,
+    //     job: 'designer'
+    // };
+
+    // // Want to use john's presentation function using Emily's parameters.
+    // john.presentation.call(emily,'friendly','afternoon');
+
+    // // The apply method insteads takes an array for the method arguments, but won't work for methods which don't accept arrays as arguments
+    // // john.presentation.apply(emily,['friendly','afternoon']);
+
+    // var johnFriendly = john.presentation.bind(john,'friendly');
+    // johnFriendly('morning');
+
+
+
+    // function arrayCalc(arr,fn) {
+    //     var res = [];
+    //     arr.forEach(element => { res.push(fn(element)) });
+    //     return res;
+    // }
+
+    // function calculateAge(element) {
+    //     return 2019 - element;
+    // }
+
+    // function isFullAge(limit, element) {
+    //     return calculateAge(element) >= limit;
+    // }
+
+    // var years = [1900, 1965, 1937, 2005, 1998];
+    // var fullJapan = arrayCalc(years,isFullAge.bind(this,20));
+    // console.log(fullJapan);
